@@ -1,0 +1,43 @@
+<%- include('header')-%>  <!-- Include heading file -->
+
+<div class="container-fluid px-5 mx-5"> <!-- These 2 divs only function for padding alignment -->
+  <div class="padding-container px-3 mx-5">
+    <h1><%= Header %></h1><!-- Hero section heading -->
+    <% if(Header!='Compose'){ %>
+    <p> <%= mainContent %> </p><!-- Hero section main content -->
+    <%  }  %>
+
+
+<% if(Header=='Home'){ %>
+  <div class="Posts">
+  <% days.forEach(day =>{ %>
+
+      <div class="post">
+        <h1> <%= day.title %> </h1>
+        <p> <%= day.TrunkatedText %>... <span> <form class="form-like-span" method="POST">
+          <input type="hidden" name="message" value="<%= day.urlName %>">
+          <button type="submit" class="btn btn-sm btn-outline-secondary mb-2"> Read More </button>
+        </form> </span> </p>
+      </div>
+
+
+
+
+    <%  })  %>
+  </div>
+<%  }  %>
+
+<% if(Header=='Compose'){ %>
+  <form class="form-like-span" method="POST">
+    <label>Title</label>
+    <input name="title" >
+    <label>Post</label>
+    <input name="Post" >
+    <button type="submit" class="btn btn-sm btn-outline-secondary mb-2"> Publish </button>
+  </form>
+<%  }  %>
+
+
+  </div>
+</div>
+<%- include('footer')-%>
